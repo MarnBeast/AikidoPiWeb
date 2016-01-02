@@ -1,0 +1,34 @@
+<aikidoact>
+	<action id=0 text="Delimiter" exec="aikidoacts/delim %IN %OUT %0 %1">
+		<param id=0 type="DD">
+			<option id=0 text="Char" val="c">
+				<param id=0 type="TX"/>
+			</option>
+			<option id=1 text="Regex" val="r">
+				<param id=0 type="TX"/>
+			</option>
+		</param>
+	</action>
+	<action id=1 text="Delay (ms)" exec="aikidoacts/delay %IN %OUT %0">
+		<param type="TX">
+			<param type="LB"> ms</param>
+		</param>
+	</action>
+	<action id=2 text="Loss" exec="aikidoacts/loss %IN %OUT %0 %1">
+		<param type="TX">
+			<param type="LB">%</param>
+			<param type="CK"></param>
+			<param type="LB"> Random</param>
+		</param>
+	</action>
+	<action id=3 text="Timestamp" exec="aikidoacts/tstamp %IN %OUT %0 %1">
+		<param type="DD">
+			<option id=0 text="Read" val="r">
+			</option>
+			<option id=1 text="Write" val="w">
+				<param type="TX"/>
+				<param type="LB"> ms</param>
+			</option>
+		</param>
+	</action>
+</aikidoact>
