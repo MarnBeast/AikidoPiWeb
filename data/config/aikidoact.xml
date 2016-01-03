@@ -28,8 +28,7 @@
 	</action>
 	<action id=3 text="Timestamp" exec="aikidoacts/tstamp %IN %OUT %0 %1">
 		<param type="DD">
-			<option text="Read" val="r">
-			</option>
+			<option text="Read" val="r"/>
 			<option text="Write" val="w">
 				<param type="TX">
 					<param type="LB" val=" ms"/>
