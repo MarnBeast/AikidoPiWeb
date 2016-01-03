@@ -1,18 +1,16 @@
 <aikidoio>
-	<iotypes>
-		<iotype id=0 name="Serial">
-			<io id=0 name="USB 0" path="/dev/ttyUSB0"/>
-			<io id=1 name="USB 1" path="/dev/ttyUSB1"/>
-			<io id=2 name="USB 2" path="/dev/ttyUSB2"/>
-			<io id=3 name="UART 0" path="/dev/ttyuartx0"/>
-			<io id=4 name="UART 1" path="/dev/ttyuartx1"/>
-		</iotype>
-		<iotype id=1 name="File">
-			<io id=0 name="SimSerial.txt" path="aikidofiles/SimSeral.txt"/>
-			<io id=1 name="MyUploaded.log" path="aikidofiles/MyUploaded.log"/>
-		</iotype>
-		<iotype id=2 name="File (MarnStick)">
-			<io id=0 name="UARTCap.txt" path="aikidofiles/UARTCap.txt"/>
-		</iotype>
-	</iotypes>
+	<iotype id=0 name="Serial">
+		<io id=0 name="USB 0" path="/dev/ttyUSB0"/>
+		<io id=1 name="USB 1" path="/dev/ttyUSB1"/>
+		<io id=2 name="USB 2" path="/dev/ttyUSB2"/>
+		<io id=3 name="UART 0" path="/dev/ttyuartx0"/>
+		<io id=4 name="UART 1" path="/dev/ttyuartx1"/>
+	</iotype>
+	<iotype id=1 name="File">
+		<io id=0 name="SimSerial.txt" path="aikidofiles/SimSeral.txt"/>
+		<io id=1 name="MyUploaded.log" path="aikidofiles/MyUploaded.log"/>
+	</iotype>
+	<iotype id=2 name="File (MarnStick)">
+		<io id=0 name="UARTCap.txt" path="aikidofiles/UARTCap.txt"/>
+	</iotype>
 </aikidoio>
