@@ -7,9 +7,9 @@ class Aikido_model extends CI_Model
 	
 	static function init()
 	{
-		$AIKIDO_CFG_PATH = FCPATH . "data/aikidocfg.xml";
-		$AIKIDO_IO_PATH = FCPATH . "data/aikidoio.xml";
-		$AIKIDO_ACTIONS_PATH = FCPATH . "data/aikidoact.xml";
+		$AIKIDO_CFG_PATH = FCPATH . "data/config/aikidocfg.xml";
+		$AIKIDO_IO_PATH = FCPATH . "data/config/aikidoio.xml";
+		$AIKIDO_ACTIONS_PATH = FCPATH . "data/config/aikidoact.xml";
 	}
 	
 	public function get_aikido_config()
