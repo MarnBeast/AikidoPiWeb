@@ -1,35 +1,36 @@
 <?php
 class Aikido_model extends CI_Model 
 {
-	private static $AIKIDO_CFG_PATH;
-	private static $AIKIDO_IO_PATH;
-	private static $AIKIDO_ACTIONS_PATH;
+	private $AIKIDO_CFG_PATH;
+	private $AIKIDO_IO_PATH;
+	private $AIKIDO_ACTIONS_PATH;
 	
-	static function init()
+	public function __construct()
 	{
-		$AIKIDO_CFG_PATH = FCPATH . "data/config/aikidocfg.xml";
-		$AIKIDO_IO_PATH = FCPATH . "data/config/aikidoio.xml";
-		$AIKIDO_ACTIONS_PATH = FCPATH . "data/config/aikidoact.xml";
+		parent::__construct();
+		$this->AIKIDO_CFG_PATH = FCPATH . "data/config/aikidocfg.xml";
+		$this->AIKIDO_IO_PATH = FCPATH . "data/config/aikidoio.xml";
+		$this->AIKIDO_ACTIONS_PATH = FCPATH . "data/config/aikidoact.xml";
 	}
 	
 	public function get_aikido_config()
 	{
-		$configxml = simplexml_load_file($AIKIDO_CFG_PATH);
+		$configxml = simplexml_load_file($this->AIKIDO_CFG_PATH);
 		$rows;
 		$ri = 0;
 		
 		foreach($configxml->row as $rowxml)
 		{
-			$rows[$ri]['active'] = (bool) $rowxml['active'];
-			$rows[$ri]['input']['type'] = (int)$rowxml->input['type'];
-			$rows[$ri]['input']['id'] = (int)$rowxml->input['id'];
-			$rows[$ri]['output']['type'] = (int)$rowxml->output['type'];
-			$rows[$ri]['output']['id'] = (int)$rowxml->output['id'];
+			$rows[$ri]['active'] = ($rowxml['active'] != "false");
+			$rows[$ri]['input']['type'] = $rowxml->input['type'];
+			$rows[$ri]['input']['id'] = $rowxml->input['id'];
+			$rows[$ri]['output']['type'] = $rowxml->output['type'];
+			$rows[$ri]['output']['id'] = $rowxml->output['id'];
 			
 			$ai = 0;
 			foreach($rowxml->action as $actionxml)
 			{
-				$rows[$ri]['actions'][$ai]['id'] = (int)$actionxml['id'];
+				$rows[$ri]['actions'][$ai]['id'] = $actionxml['id'];
 				
 				$oi = 0;
 				foreach($actionxml->option as $optionxml)
@@ -39,7 +40,7 @@ class Aikido_model extends CI_Model
 				}
 				$ai++;
 			}
-			$i++;
+			$ri++;
 		}
 		
 		return $rows;
@@ -47,19 +48,19 @@ class Aikido_model extends CI_Model
 	
 	public function get_aikido_io()
 	{
-		$ioxml = simplexml_load_file($AIKIDO_IO_PATH);
+		$ioxml = simplexml_load_file($this->AIKIDO_IO_PATH);
 		$iotypes;
 		
 		foreach($ioxml->iotype as $typexml)
 		{
 			$ti = (int)$typexml['id'];
-			$iotypes[$ti]['name'] = (string)$typexml['name'];
+			$iotypes[$ti]['name'] = $typexml['name'];
 			
 			foreach($typexml->io as $ioxml)
 			{
 				$ii = (int)$ioxml['id'];
-				$iotypes[$ti]['ios'][$ii]['name'] = (string)$ioxml['name'];
-				$iotypes[$ti]['ios'][$ii]['path'] = (string)$ioxml['path'];
+				$iotypes[$ti]['ios'][$ii]['name'] = $ioxml['name'];
+				$iotypes[$ti]['ios'][$ii]['path'] = $ioxml['path'];
 			}
 		}
 		return $iotypes;
@@ -67,39 +68,45 @@ class Aikido_model extends CI_Model
 	
 	public function get_aikido_actions()
 	{
-		$actionsxml = simplexml_load_file($AIKIDO_ACTIONS_PATH);
+		$actionsxml = simplexml_load_file($this->AIKIDO_ACTIONS_PATH);
 		$actions;
 		
 		foreach($actionsxml->action as $actionxml)
 		{
 			$ai = (int)$actionxml['id'];
-			$actions[$ai]['text'] = (string)$actionxml['text'];
-			$actions[$ai]['exec'] = (string)$actionxml['exec'];
+			$actions[$ai]['text'] = $actionxml['text'];
+			$actions[$ai]['exec'] = $actionxml['exec'];
 			
-			$actions[$ai]['param'] = parse_action_param($actionxml->param);
+			$actions[$ai]['param'] = $this->parse_action_param($actionxml->param);
 		}
 		
-		return $iotypes;
+		return $actions;
 	}
 	
 	private function parse_action_param($paramxml)
 	{
-		$param['type'] = (string)$paramxml['type'];
+		$param['type'] = $paramxml['type'];
 		if(isset($paramxml['val']))
 		{
-			$param['val'] = (string)$paramxml['val'];
+			$param['val'] = $paramxml['val'];
 		}
 		
-		$oi = 0;
-		foreach($paramxml->option as $optionxml)
+		if(isset($paramxml->option))
 		{
-			$param['options'][$oi]['text'] = $optionxml['text'];
-			$param['options'][$oi]['val'] = $optionxml['val'];
-			
-			$param['options'][$oi]['param'] = parse_action_param($optionxml->param);
-			$oi++;
+			$oi = 0;
+			foreach($paramxml->option as $optionxml)
+			{
+				$param['options'][$oi]['text'] = $optionxml['text'];
+				$param['options'][$oi]['val'] = $optionxml['val'];
+				
+				$param['options'][$oi]['param'] = $this->parse_action_param($optionxml->param);
+				$oi++;
+			}
 		}
 		
-		$param['param'] = parse_action_param($paramxml->param);
+		if(isset($paramxml->param))
+		{
+			$param['param'] = $this->parse_action_param($paramxml->param);
+		}
 	}
 }

@@ -1,5 +1,5 @@
 <aikidoact>
-	<action id=0 text="Delimiter" exec="aikidoacts/delim %IN %OUT %0 %1">
+	<action id="0" text="Delimiter" exec="aikidoacts/delim %IN %OUT %0 %1">
 		<param type="DD">
 			<option text="Char" val="c">
 				<param type="TX"/>
@@ -9,12 +9,12 @@
 			</option>
 		</param>
 	</action>
-	<action id=1 text="Delay" exec="aikidoacts/delay %IN %OUT %0">
+	<action id="1" text="Delay" exec="aikidoacts/delay %IN %OUT %0">
 		<param type="TX">
 			<param type="LB" val="ms"/>
 		</param>
 	</action>
-	<action id=2 text="Loss" exec="aikidoacts/loss %IN %OUT %0 %1">
+	<action id="2" text="Loss" exec="aikidoacts/loss %IN %OUT %0 %1">
 		<param type="TX">
 			<param type="LB" val="%">
 				<param type="CK">
@@ -26,7 +26,7 @@
 			</param>
 		</param>
 	</action>
-	<action id=3 text="Timestamp" exec="aikidoacts/tstamp %IN %OUT %0 %1">
+	<action id="3" text="Timestamp" exec="aikidoacts/tstamp %IN %OUT %0 %1">
 		<param type="DD">
 			<option text="Read" val="r"/>
 			<option text="Write" val="w">

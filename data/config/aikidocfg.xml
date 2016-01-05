@@ -1,49 +1,49 @@
 <aikidocfg>
-	<row active=true>
-		<input type=0 id=1/>
-		<output type=0 id=2/>
-		<action id=0>
+	<row active="true">
+		<input type="0" id="1"/>
+		<output type="0" id="2"/>
+		<action id="0">
 			<option>0</option>
 			<option>1</option>
 		</action>
-		<action id=1>
+		<action id="1">
 			<option>1</option>
 		</action>
 	</row>
-	<row active=false>
-		<input type=1 id=0/>
-		<output type=0 id=2/>
-		<action id=0>
+	<row active="false">
+		<input type="1" id="0"/>
+		<output type="0" id="2"/>
+		<action id="0">
 			<option>1</option>
 			<option>\n</option>
 		</action>
-		<action id=1>
+		<action id="1">
 			<option>500</option>
 		</action>
-		<action id=2>
+		<action id="2">
 			<option>10</option>
 			<option>1</option>
 		</action>
-		<action id=0>
+		<action id="0">
 			<option>0</option>
 			<option>1</option>
 		</action>
-		<action id=1>
+		<action id="1">
 			<option>1</option>
 		</action>
 	</row>
-	<row active=false>
-		<input type=0 id=3/>
-		<output type=2 id=0/>
-		<action id=3>
+	<row active="false">
+		<input type="0" id="3"/>
+		<output type="2" id="0"/>
+		<action id="3">
 			<option>1</option>
 			<option>1</option>
 		</action>
 	</row>
-	<row active=true>
-		<input type=2 id=0/>
-		<output type=0 id=4/>
-		<action id=3>
+	<row active="true">
+		<input type="2" id="0"/>
+		<output type="0" id="4"/>
+		<action id="3">
 			<option>0</option>
 		</action>
 	</row>
